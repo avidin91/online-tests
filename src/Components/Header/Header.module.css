@@ -1,0 +1,9 @@
+* {
+    box-sizing: border-box;
+}
+
+.head {
+    width: 100vw;
+    height: 80px;
+    background-color: red;
+}
