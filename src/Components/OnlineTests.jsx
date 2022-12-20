@@ -1,8 +1,9 @@
 import React from 'react';
+import classes from "./OnlineTests.module.css";
 
 const OnlineTests = () => {
     return (
-        <div>
+        <div className={classes.test}>
             
         </div>
     );

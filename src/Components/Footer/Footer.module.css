@@ -1,0 +1,49 @@
+.positioning {
+    background-color: #f0f0a8;
+}
+
+.container {
+    margin: 0 auto;
+    width: 1024px;
+    height: 300px;
+    background-color: #f0f0a8;
+}
+
+.container a {
+    text-decoration: none;
+    color: #020089;
+    line-height: 1.5em;
+}
+
+.container a:hover {
+    text-decoration: underline;
+}
+
+.main {
+    padding: 50px 0 20px 0;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+}
+
+.logo {
+    margin: 0 50px 0 0;
+}
+
+.info {
+    display: flex;
+}
+
+.infoTheme {
+    margin: 0 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.policy {
+    margin: 0 auto;
+    width: 300px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+}

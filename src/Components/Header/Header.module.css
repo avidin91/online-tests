@@ -3,7 +3,38 @@
 }
 
 .head {
-    width: 100vw;
+    display: flex;
     height: 80px;
-    background-color: red;
+    background-color: #f0f0a8;
+    padding: 0 20px;
 }
+
+.align {
+    width: 390px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+img {
+    margin: 5px 20px 0 0;
+    width: 70px;
+    height: 70px;
+}
+
+.descriptor {
+    width: 300px;
+    height: 40px;
+}
+
+.descriptorP p {
+    margin: 5px;
+    font-weight: 100;
+    font-size: 13px;
+    line-height: 1em;
+}
+
+.buttonWrapper {
+    display: flex;
+    height: 40px;
+}
+
