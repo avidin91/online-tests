@@ -1,0 +1,32 @@
+.main {
+    margin: 0 auto;
+    width: 1200px;
+}
+
+.main p {
+    color: #222222;
+}
+
+.title {
+    margin: 0 auto;
+    width: 600px;
+}
+
+.title p {
+    font-weight: 600;
+    font-size: 40px;
+}
+
+.description {
+    margin: 0 auto;
+    width: 800px;
+}
+
+.description p {
+    line-height: 1.5em;
+}
+
+.buttonPositioning {
+    margin: 70px auto 20px;
+    width: 260px;
+}
