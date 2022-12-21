@@ -1,0 +1,50 @@
+.main {
+    margin: 0 auto;
+    width: 1200px;
+}
+
+.main p {
+    color: #222222;
+}
+
+.title {
+    margin: 0 auto;
+    width: 600px;
+}
+
+.title p {
+    font-weight: 600;
+    font-size: 40px;
+    text-align: center;
+}
+
+.options {
+    margin: 0 auto;
+    display: flex;
+    width: 1024px;
+    border-bottom: 1px solid #e6e9ed;
+}
+
+.buttonOption {
+    margin: 0 20px;
+    padding: 0 10px;
+    width: auto;
+    height: 45px;
+}
+
+.buttonOption p {
+    font-size: 17px;
+    color: #222222;
+    cursor: pointer;
+}
+
+.buttonOption p:hover {
+    color: #059f2e;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+

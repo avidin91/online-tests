@@ -15,7 +15,7 @@
 .title p {
     font-weight: 600;
     font-size: 40px;
-
+    text-align: center;
 }
 
 .description {
@@ -27,12 +27,16 @@
     line-height: 1.5em;
 }
 
-.buttonPositioning {
-    margin: 70px auto 20px;
+.video {
+    margin: 0 auto;
+    width: 560px;
+}
+
+.button {
+    margin: 50px auto;
     width: 260px;
 }
 
-.buttonPositioning p {
+.button p {
     color: white;
 }
-

@@ -1,0 +1,56 @@
+.main {
+    margin: 10px;
+    padding: 20px;
+    display: flex;
+    width: 324px;
+    height: 210px;
+    border-radius: 15px;
+    background-color: #fbfbfb;
+    box-shadow: 0px 0px 10px #ab9f9f;
+}
+
+.main:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 10px #277795;
+}
+
+.main a {
+    text-decoration: none;
+    color: #222222;
+}
+
+.main a:hover {
+    color: black;
+    text-decoration: underline;
+}
+
+.title {
+    margin: 0 0 10px 0;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.author {
+    margin: 0 0 50px 0;
+    font-size: 13px;
+}
+
+.items {
+    display: flex;
+    margin: 5px 0;
+}
+
+.likesQty {
+    margin: 0 5px;
+}
+.donesQty {
+    margin: 0 5px;
+}
+.commentsQty {
+    margin: 0 5px;
+}
+
+.favorites {
+    display: flex;
+    justify-content: flex-end;
+}
