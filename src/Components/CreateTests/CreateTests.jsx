@@ -28,7 +28,7 @@ const CreateTest = () => {
                         allowFullScreen></iframe>
             </div>
             <div className={classes.button}>
-                <MainButton text={'Создать тест'}/>
+                <MainButton text={'Создать тест'} link={'/tests-constructor'}/>
             </div>
         </div>
     );

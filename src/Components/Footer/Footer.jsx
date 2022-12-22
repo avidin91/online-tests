@@ -8,7 +8,9 @@ const Footer = () => {
             <div className={classes.container}>
                 <div className={classes.main}>
                     <div className={classes.logo}>
-                        <img src={logo} alt="Logo"/>
+                        <a href="/">
+                            <img src={logo} alt="Logo"/>
+                        </a>
                     </div>
                     <div className={classes.info}>
                         <div className={classes.infoTheme}>

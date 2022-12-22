@@ -4,7 +4,9 @@ import classes from "./SmallButton.module.css";
 const SmallButton = (props) => {
     return (
         <div className={classes.button}>
-            <p>{props.text}</p>
+            <p>
+                <a href={props.link}>{props.text}</a>
+            </p>
         </div>
     );
 };

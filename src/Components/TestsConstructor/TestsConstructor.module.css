@@ -1,0 +1,147 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    color: #222222;
+}
+
+.main p {
+    text-align: center;
+
+}
+
+.mainP {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.position {
+    margin: 0 auto;
+    display: flex;
+    width: 1200px;
+    border-left: 1px solid #e6e9ed;
+    border-right: 1px solid #e6e9ed;
+}
+
+.constructor {
+    margin: 50px 10px 10px 25px;
+    padding: 0 10px;
+    width: 650px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #979292;
+}
+
+legend {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+fieldset {
+    border: 2px solid #a9b7b9;
+    border-radius: 5px;
+}
+
+textarea {
+    resize: none;
+    padding: 10px;
+    border: 1px solid #d1cece;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #7c7c7c inset;
+}
+
+.constructorHeadP {
+    font-weight: bold;
+    font-size: 23px;
+}
+
+input {
+    margin: 0 10px 0 0;
+}
+
+.check {
+    margin: 10px 0;
+    display: flex;
+}
+
+.iconAwesome:hover {
+    cursor: pointer;
+    color: #328750;
+}
+
+.answer {
+    display: flex;
+    margin: 10px 0;
+}
+
+.answerP {
+    font-weight: bold;
+}
+
+.answer label {
+    margin: auto;
+    width: 30px;
+    height: 30px;
+}
+
+.labelText {
+    display: flex;
+    align-items: center;
+}
+
+.labelText p {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.buttonDeleteAnswer {
+    display: flex;
+    margin: auto ;
+    width: 80px;
+    height: 20px;
+    border-radius: 3px;
+    background-color: #f1f1f1;
+    align-items: center;
+    border: 1px solid black;
+}
+
+.buttonDeleteAnswer p {
+    font-size: 13px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.buttonDeleteAnswer:hover {
+    cursor: pointer;
+    background-color: #dfdfdf;
+}
+
+.questionAdd {
+    display: flex;
+    margin: 20px auto;
+    width: 180px;
+    height: 20px;
+    border-radius: 3px;
+    background-color: #f1f1f1;
+    align-items: center;
+    border: 1px solid black;
+
+}
+
+.questionAdd p {
+    font-size: 14px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.questionAdd:hover {
+    cursor: pointer;
+    background-color: #dfdfdf;
+}
+
+.previewScreen {
+    position: fixed;
+    margin: 50px 0 10px 725px;
+    width: 450px;
+    height: 450px;
+    max-height: 800px;
+    background-color: cornsilk;
+}

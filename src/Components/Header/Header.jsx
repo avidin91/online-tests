@@ -8,19 +8,19 @@ import EnterButton from "../Buttons/Enter-button/EnterButton";
 const Header = () => {
     return (
         <div className={classes.head}>
-
-                <img src={logo} alt="Logo"/>
+                <a href="/">
+                    <img src={logo} alt="Logo"/>
+                </a>
                 <div className={classes.descriptor}>
                     <div className={classes.descriptorP}>
                         <p>Конструктор тестов и опросов для самостоятельной подготовки</p>
                     </div>
                     <div className={classes.buttonWrapper}>
                         <SmallButton text={'Каталог'}/>
-                        <SmallButton text={'Создать тест'}/>
+                        <SmallButton text={'Создать тест'} link={'/tests-constructor'}/>
                     </div>
                 </div>
-
-            <Logo text={'TESTCUBE'}/>
+                <Logo text={'TESTCUBE'}/>
             <div className={classes.align}>
                 <EnterButton text={'Вход'}/>
                 <EnterButton text={'Регистрация'}/>

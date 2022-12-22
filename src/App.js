@@ -1,17 +1,22 @@
+import {
+    Routes,
+    Route,
+} from "react-router-dom";
+
 import './App.css';
 import Header from "./Components/Header/Header";
-import OnlineTests from "./Components/OnlineTests/OnlineTests";
-import CreateTest from "./Components/CreateTests/CreateTests";
 import Footer from "./Components/Footer/Footer";
-import WelcomeScreen from "./Components/WelcomeScreen/WelcomeScreen";
+import MainScreen from "./Components/MainScreen/MainScreen";
+import TestsConstructor from "./Components/TestsConstructor/TestsConstructor";
 
 function App() {
     return (
         <div className="App">
             <Header/>
-            <WelcomeScreen />
-            <OnlineTests />
-            <CreateTest/>
+                <Routes>
+                    <Route path='/' element={<MainScreen />}/>
+                    <Route path='/tests-constructor' element={<TestsConstructor />}/>
+                </Routes>
             <Footer/>
         </div>
     );
