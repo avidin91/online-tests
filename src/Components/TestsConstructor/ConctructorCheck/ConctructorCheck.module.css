@@ -1,0 +1,9 @@
+.check {
+    margin: 10px 0;
+    display: flex;
+}
+
+.iconAwesome:hover {
+    cursor: pointer;
+    color: #328750;
+}

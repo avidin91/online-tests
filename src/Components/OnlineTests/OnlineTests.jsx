@@ -91,7 +91,7 @@ const OnlineTests = () => {
             </div>
             <div className={classes.content}>
                 {object.map((item, index) =>
-                    <CatalogueItem item={item}/>
+                    <CatalogueItem item={item} key={index}/>
                 )}
             </div>
 

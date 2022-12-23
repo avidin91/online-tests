@@ -1,0 +1,42 @@
+.answer {
+    display: flex;
+    margin: 10px 0;
+}
+
+.answer label {
+    margin: auto;
+    width: 30px;
+    height: 30px;
+}
+
+.labelText {
+    display: flex;
+    align-items: center;
+}
+
+.labelText p {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.buttonDeleteAnswer {
+    display: flex;
+    margin: auto ;
+    width: 80px;
+    height: 20px;
+    border-radius: 3px;
+    background-color: #f1f1f1;
+    align-items: center;
+    border: 1px solid black;
+}
+
+.buttonDeleteAnswer p {
+    font-size: 13px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.buttonDeleteAnswer:hover {
+    cursor: pointer;
+    background-color: #dfdfdf;
+}
