@@ -5,7 +5,6 @@ import PreviewScreen from "./PreviewScreen/PreviewScreen";
 import Question from "./Question/Question";
 import ConstructorButton from "../Buttons/ConstructorButton/ConstructorButton";
 import ConctructorCheck from "./ConctructorCheck/ConctructorCheck";
-import question from "./Question/Question";
 
 // Компонента TestsConstructor отрисовывает окно конструктора тестов полностью, включая окноп предварительного просмотра
 const TestsConstructor = () => {
@@ -45,13 +44,16 @@ const TestsConstructor = () => {
 
     // Функция removeAnswer удаляет вопрос при нажатии на кнопку "Удалить"
     const removeAnswer = function(e) {
-        const id = e.target.id;
-        const newAnswers = answers.filter(answer => answer.id != id);
-        newAnswers.map(answer => {
-            if (answer.id >= (+ id + 1)) {
-                return answer.id = answer.id - 1
-            }
+        const id = + e.target.id;
+        const newArr = answers.map(answer => {
+            return {...answer}
         })
+        const newAnswers = newArr.filter(answer => answer.id !== id);
+        for (let i = 0; i < newAnswers.length; i++) {
+             if (newAnswers[i].id >= (+ id + 1)) {
+                 newAnswers[i].id = newAnswers[i].id - 1
+             }
+        }
         setAnswers(newAnswers)
     }
 
