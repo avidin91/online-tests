@@ -2,7 +2,10 @@ import React from 'react';
 import classes from "./Question.module.css";
 import ConstructorButton from "../../Buttons/ConstructorButton/ConstructorButton";
 
+// Компонента Question отрисовывает блок с вопросами в конструкторе
+
 const Question = (props) => {
+    // Функция number проставляет буквенное значение в блоке с вопросов в зависимости от пришедшего id
     const number = function() {
         if (props.id === 1) {
             return 'а)'
@@ -23,9 +26,10 @@ const Question = (props) => {
         }
     }
 
-    const text = function () {
-        if (props.text !== '') {
-            return props.text
+    // Функция valueText проверяет, приходит ли текст в значение value, и если нет, то оставляет пустую строку. Тогда в блоке вопроса отображается значение из Placeholder.
+    const valueText = function () {
+        if (props.valueText !== '') {
+            return props.valueText
         } else {
             return ''
         }
@@ -45,12 +49,14 @@ const Question = (props) => {
                 minLength='1'
                 maxLength='1000'
                 required={true}
+                id={props.id}
                 placeholder={props.placeholderText}
-                value={text()}
+                value={valueText()}
+                onChange={props.changeValueText}
             >
 
             </textarea>
-            <ConstructorButton text={'Удалить'}/>
+            <ConstructorButton text={'Удалить'} removeAnswer={props.removeAnswer} id={props.id}/>
         </div>
     );
 };

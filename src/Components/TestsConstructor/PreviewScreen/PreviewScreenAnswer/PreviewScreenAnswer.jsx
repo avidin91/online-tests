@@ -1,7 +1,11 @@
 import React from 'react';
 import classes from "./PreviewScreenAnswer.module.css";
 
+// Компонента PreviewScreenAnswer отвечает за блок вопросв в окне предварительного просмотра
+
 const PreviewScreenAnswer = (props) => {
+    // Функция number присваивает букву в зависимости от пришедшего значения id
+
     const number = function() {
         if (props.id === 1) {
             return 'а)'
@@ -23,10 +27,10 @@ const PreviewScreenAnswer = (props) => {
     }
 
     const text = function () {
-        if (props.text === '') {
+        if (props.valueText === '') {
             return props.placeholderText
         } else {
-            return props.text
+            return props.valueText
         }
     }
 

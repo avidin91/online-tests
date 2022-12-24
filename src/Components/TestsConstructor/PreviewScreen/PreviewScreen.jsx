@@ -2,6 +2,8 @@ import React from 'react';
 import classes from "./PreviewScreen.module.css";
 import PreviewScreenAnswer from "./PreviewScreenAnswer/PreviewScreenAnswer";
 
+// Компонента PreviewScreen отображает предварительный просмотр заполненого теста
+
 const PreviewScreen = (props) => {
     return (
         <div className={classes.previewScreen}>
@@ -21,12 +23,12 @@ const PreviewScreen = (props) => {
                         Что такое число Пи в математике?
                     </p>
                 </div>
-                {props.questions.map((question, index) => {
+                {props.answers.map((answer, index) => {
                     return <PreviewScreenAnswer
-                        placeholderText={question.placeholderText}
-                        text={question.text}
+                        placeholderText={answer.placeholderText}
+                        valueText={answer.valueText}
                         key={index}
-                        id={question.id}/>
+                        id={answer.id}/>
                 })}
             </div>
 
