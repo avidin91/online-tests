@@ -4,7 +4,10 @@ import PreviewScreenAnswer from "./PreviewScreenAnswer/PreviewScreenAnswer";
 
 // Компонента PreviewScreen отображает предварительный просмотр заполненого теста
 
-const PreviewScreen = (props) => {
+const PreviewScreen = ({testConstructor}) => {
+    const questions = testConstructor.questions[0];
+    const answers = questions.answers;
+
     return (
         <div className={classes.previewScreen}>
             <div className={classes.title}>
@@ -23,7 +26,7 @@ const PreviewScreen = (props) => {
                         Что такое число Пи в математике?
                     </p>
                 </div>
-                {props.answers.map((answer, index) => {
+                {answers.map((answer, index) => {
                     return <PreviewScreenAnswer
                         placeholderText={answer.placeholderText}
                         valueText={answer.valueText}

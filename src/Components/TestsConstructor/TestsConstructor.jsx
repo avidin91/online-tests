@@ -2,68 +2,122 @@ import React, {useState} from 'react';
 
 import classes from "./TestsConstructor.module.css";
 import PreviewScreen from "./PreviewScreen/PreviewScreen";
-import Question from "./Question/Question";
-import ConstructorButton from "../Buttons/ConstructorButton/ConstructorButton";
-import ConctructorCheck from "./ConctructorCheck/ConctructorCheck";
+import Constructor from "./Constructor/Constructor";
 
 // Компонента TestsConstructor отрисовывает окно конструктора тестов полностью, включая окноп предварительного просмотра
 const TestsConstructor = () => {
 
     // State answers отвечает за состояние блока ответов
-    const [answers, setAnswers] = useState(
-        [
+    const [testConstructor, setTestConstructor] = useState(
+
             {
-                id: 1,
-                placeholderText: 'Например: «Это половина длины окружности»',
-                valueText: '',
+                testTitleText: '',
+                testTitlePlaceholder: 'Например: «Окружности в математике и геометрии "7класс"»',
+                questions: [
+                    {
+                        questionText: '',
+                        questionPlaceholder: 'Например: «Что такое число Пи в математике?»',
+                        id: 1,
+                        answers: [
+                            {
+                                id: 1,
+                                placeholderText: 'Например: «Это половина длины окружности»',
+                                valueText: '',
+                            },
+                            {
+                                id: 2,
+                                placeholderText: 'Например: «Математическая постоянная, равная отношению длины окружности к её диаметру»',
+                                valueText: '',
+                            },
+                        ],
+                    }
+                ]
             },
-            {
-                id: 2,
-                placeholderText: 'Например: «Математическая постоянная, равная отношению длины окружности к её диаметру»',
-                valueText: '',
-            },
-        ]
+
     );
 
-    // Функция addAnswer обновляет состояние блока ответов на нажание по кнопке "Добавить ответ"
+    const newTestConstructor = {...testConstructor}; // Копия State
+    const questions = testConstructor.questions; // Ссылка на массив вопросов
+    const answers = testConstructor.questions[0].answers; // Ссылка на массив ответов
+
+    // Функция addAnswer меняет состояние, обновляет состояние блока ответов на нажание по кнопке "Добавить ответ"
     const addAnswer = function() {
         const lastId = answers[answers.length - 1].id;
+        const newId = lastId + 1;
+        const newAnswer = {
+            id: newId,
+            placeholderText: 'Введите текст...',
+            valueText: '',
+        }
+        const newAnswers = [...answers, newAnswer];
+        newTestConstructor.questions[0].answers = newAnswers
         if (lastId <= 7) {
-            const newId = lastId + 1;
-            setAnswers(
-                [...answers,
-                    {
-                        id: newId,
-                        placeholderText: 'Введите текст...',
-                        valueText: '',
-                    },
-                ]
-            )
+            setTestConstructor(newTestConstructor)
         }
     }
 
-    // Функция removeAnswer удаляет вопрос при нажатии на кнопку "Удалить"
+    // Функция removeAnswer меняет состояние, удаляет вопрос при нажатии на кнопку "Удалить"
     const removeAnswer = function(e) {
         const id = + e.target.id;
-        const newArr = answers.map(answer => {
+        const answersMap = answers.map(answer => {
             return {...answer}
         })
-        const newAnswers = newArr.filter(answer => answer.id !== id);
+        const newAnswers = answersMap.filter(answer => answer.id !== id);
+        newTestConstructor.questions[0].answers = newAnswers
+        // Цикл переприсваивает id, чтобы они шли по порядку при удалении.
         for (let i = 0; i < newAnswers.length; i++) {
              if (newAnswers[i].id >= (+ id + 1)) {
                  newAnswers[i].id = newAnswers[i].id - 1
              }
         }
-        setAnswers(newAnswers)
+        setTestConstructor(newTestConstructor)
     }
 
-    // Функцмя changeValueText меняет состояние answers в зависимости от value textarea в блоке конструктора
+    // Функция changeValueText меняет состояние answers в зависимости от value textarea в блоке конструктора
     const changeValueText = function(e) {
-        const id = e.target.id - 1;
+        const id = e.target.id - 1; // Минус 1, чтобы получить индекс элемента массива.
         const newAnswers = [...answers];
         newAnswers[id].valueText = e.target.value
-        setAnswers(newAnswers);
+        setTestConstructor(newTestConstructor);
     }
+
+    // Функция addQuestion меняет состояние, добавляет новый вопрос.
+    const addQuestion = function () {
+        const lastId = testConstructor.questions[testConstructor.questions.length -1].id;
+        const newId = lastId + 1;
+        const newQuestion = {
+            questionText: '',
+            questionPlaceholder: 'Например: «Второй вопрос»',
+            id: newId,
+            answers: [
+                {
+                    id: 1,
+                    placeholderText: 'Введите текст...',
+                    valueText: '',
+                },
+                {
+                    id: 2,
+                    placeholderText: 'Введите текст...',
+                    valueText: '',
+                },
+            ],
+        };
+        newTestConstructor.questions = [...newTestConstructor.questions,newQuestion]
+        setTestConstructor(newTestConstructor)
+    };
+
+    // Функция removeQuestion меняет состояние, удаляет вопрос.
+    const removeQuestion = function(e) {
+        const id = + e.target.id;
+        if (id != 1) {
+            const questionsMap = questions.map(question => {
+                return {...question}
+            });
+            const newQuestions = questionsMap.filter(question => question.id !== id);
+            newTestConstructor.questions = newQuestions;
+            setTestConstructor(newTestConstructor)
+        }
+    };
 
     return (
         <div className={classes.main}>
@@ -71,65 +125,15 @@ const TestsConstructor = () => {
                 Конструктор тестов
             </p>
             <div className={classes.position}>
-                <div className={classes.constructor}>
-                    <p className={classes.constructorHeadP}>
-                        Заполните поля для составления теста
-                    </p>
-                    <form action="">
-                        <fieldset>
-                            <legend>Введите название теста</legend>
-                            <textarea
-                                name="title"
-                                id="title"
-                                cols="76"
-                                rows="3"
-                                minLength='1'
-                                maxLength='1000'
-                                required={true}
-                                placeholder='Например: «Окружности в математике и геометрии "7 класс"»'
-                            >
-
-                                </textarea>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Вопрос 1</legend>
-                            <label htmlFor="question">Введите ваш вопрос:</label>
-                            <textarea
-                                name="question"
-                                id="question"
-                                cols="76"
-                                rows="6"
-                                minLength='1'
-                                maxLength='1000'
-                                required={true}
-                                placeholder='Например: «Что такое число Пи в математике?»'
-                            >
-
-                            </textarea>
-                            <ConctructorCheck text={'Теста на время'}/>
-                            <ConctructorCheck text={'Несколько вариантов ответа'}/>
-                            <div>
-                                <p className={classes.answerP}>Добавьте варианты ответа</p>
-                                {answers.map((answer, index) => {
-                                    return <Question
-                                        id={answer.id}
-                                        placeholderText={answer.placeholderText}
-                                        valueText={answer.valueText}
-                                        key={answer.id}
-                                        changeValueText={changeValueText}
-                                        removeAnswer={removeAnswer}
-                                    />
-
-
-                                })}
-                                <ConstructorButton addAnswer={addAnswer} text={'Добавить ответ'}/>
-                            </div>
-                            <ConctructorCheck text={'Добавить теоретическую часть в ответ'}/>
-                        </fieldset>
-                        <ConstructorButton text={'Добавить вопрос'}/>
-                    </form>
-                </div>
-                    <PreviewScreen answers={answers}/>
+                <Constructor
+                    testConstructor={testConstructor}
+                    addAnswer={addAnswer}
+                    removeAnswer={removeAnswer}
+                    changeValueText={changeValueText}
+                    addQuestion={addQuestion}
+                    removeQuestion={removeQuestion}
+                />
+                <PreviewScreen testConstructor={testConstructor}/>
             </div>
         </div>
     );

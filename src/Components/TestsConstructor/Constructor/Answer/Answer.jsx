@@ -1,10 +1,9 @@
 import React from 'react';
-import classes from "./Question.module.css";
-import ConstructorButton from "../../Buttons/ConstructorButton/ConstructorButton";
+import classes from "./Answer.module.css";
+import ConstructorButton from "../../../Buttons/ConstructorButton/ConstructorButton";
 
-// Компонента Question отрисовывает блок с вопросами в конструкторе
-
-const Question = (props) => {
+// Компонента Answer отрисовывает блок с ответами
+const Answer = (props) => {
     // Функция number проставляет буквенное значение в блоке с вопросов в зависимости от пришедшего id
     const number = function() {
         if (props.id === 1) {
@@ -61,4 +60,4 @@ const Question = (props) => {
     );
 };
 
-export default Question;
+export default Answer;

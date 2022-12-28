@@ -10,9 +10,9 @@ const ConstructorButton = (props) => {
             return props.addAnswer(e)
         } if (e.target.textContent === 'Удалить') {
             return props.removeAnswer(e)
+        } if (e.target.textContent === 'Добавить вопрос') {
+            return props.addQuestion(e)
         }
-
-        console.log(e.target.textContent)
     }
 
     return (

@@ -1,0 +1,38 @@
+legend {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+fieldset {
+    border: 2px solid #7e5c13;
+    border-radius: 5px;
+    margin: 0 0 20px 0;
+}
+
+.buttonDelete {
+    display: flex;
+    float: right;
+    margin: -8px 0 10px 0;
+    padding: 2px 5px;
+    background-color: #f3f3f3a1;
+    border: 2px solid red;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.buttonDelete:hover {
+    cursor: pointer;
+    background-color: #ebd8d8a1;
+}
+
+.buttonDelete p {
+    margin: 0;
+}
+
+.test {
+    margin: 200px 0 0 0;
+}
+
+.answerP {
+    font-weight: bold;
+}
