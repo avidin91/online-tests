@@ -33,6 +33,7 @@ const Question = ({question, addAnswer, removeAnswer, changeValueText, removeQue
                     {answers.map((answer, index) => {
                         return <Answer
                             id={answer.id}
+                            questionId={question.id}
                             placeholderText={answer.placeholderText}
                             valueText={answer.valueText}
                             key={answer.id}
@@ -42,7 +43,11 @@ const Question = ({question, addAnswer, removeAnswer, changeValueText, removeQue
 
 
                     })}
-                    <ConstructorButton addAnswer={addAnswer} text={'Добавить ответ'}/>
+                    <ConstructorButton
+                        addAnswer={addAnswer}
+                        text={'Добавить ответ'}
+                        id={question.id}
+                    />
                 </div>
                 <ConctructorCheck text={'Добавить теоретическую часть в ответ'}/>
             </fieldset>

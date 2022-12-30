@@ -34,6 +34,11 @@ const Answer = (props) => {
         }
     }
 
+    // Функция changeText нужна для того, чтобы передать в аргументах id вопроса.
+    const changeText = function(e) {
+        props.changeValueText(e, props.questionId)
+    }
+
     return (
         <div className={classes.answer}>
             <label htmlFor="answer" className={classes.labelText}>
@@ -51,11 +56,16 @@ const Answer = (props) => {
                 id={props.id}
                 placeholder={props.placeholderText}
                 value={valueText()}
-                onChange={props.changeValueText}
+                onChange={changeText}
             >
 
             </textarea>
-            <ConstructorButton text={'Удалить'} removeAnswer={props.removeAnswer} id={props.id}/>
+            <ConstructorButton
+                text={'Удалить'}
+                removeAnswer={props.removeAnswer}
+                id={props.id}
+                questionId={props.questionId}
+            />
         </div>
     );
 };

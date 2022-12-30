@@ -5,36 +5,47 @@ import ConctructorCheck from "./ConctructorCheck/ConctructorCheck";
 import ConstructorButton from "../../Buttons/ConstructorButton/ConstructorButton";
 import Textarea from "./Textarea/Textarea";
 import Question from "./Question/Question";
+import PreviewScreen from "../PreviewScreen/PreviewScreen";
 
 // Компонента Constructor отрисовывает блок с конструктором
 const Constructor = ({testConstructor, addAnswer, removeAnswer, changeValueText, addQuestion, removeQuestion}) => {
     const questions = testConstructor.questions;
 
     return (
-            <div className={classes.constructor}>
-                <p className={classes.constructorHeadP}>
-                    Заполните поля для составления теста
-                </p>
+        <div className={classes.constructor}>
+            <p className={classes.constructorHeadP}>
+                Заполните поля для составления теста
+            </p>
+            <form action="">
+                <fieldset>
+                    <legend>Введите название теста</legend>
+                    <Textarea placeholderText={testConstructor.testTitlePlaceholder}
+                              rowsCount={3}
+                              nameText={"title"}
+                              idText={"title"}
+                    />
+                </fieldset>
+                <ConctructorCheck text={'Тест на время'}/>
+            </form>
+            <div>
                 <form action="">
-                    <fieldset>
-                        <legend>Введите название теста</legend>
-                        <Textarea placeholderText={testConstructor.testTitlePlaceholder}
-                                  rowsCount={3}
-                                  nameText={"title"}
-                                  idText={"title"}
-                        />
-                    </fieldset>
-                    <ConctructorCheck text={'Тест на время'}/>
                     {questions.map(question => {
-                        return <Question
-                            testConstructor={testConstructor}
-                            question={question}
-                            addAnswer={addAnswer}
-                            removeAnswer={removeAnswer}
-                            changeValueText={changeValueText}
-                            removeQuestion={removeQuestion}
-                            key={question.id}
-                        />
+                        return <div key={question.id + 1000} className={classes.questionBlock}>
+                                    <Question
+                                        testConstructor={testConstructor}
+                                        question={question}
+                                        addAnswer={addAnswer}
+                                        removeAnswer={removeAnswer}
+                                        changeValueText={changeValueText}
+                                        removeQuestion={removeQuestion}
+                                        key={question.id}
+                                    />
+                                    <PreviewScreen
+                                        testConstructor={testConstructor}
+                                        key={question.id + 100}
+                                    />
+                                </div>
+
                     })}
                     <ConstructorButton
                         text={'Добавить вопрос'}
@@ -42,6 +53,8 @@ const Constructor = ({testConstructor, addAnswer, removeAnswer, changeValueText,
                     />
                 </form>
             </div>
+
+        </div>
     );
 };
 
