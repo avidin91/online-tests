@@ -1,4 +1,5 @@
 textarea {
+    margin: 0 auto;
     resize: none;
     padding: 10px;
     border: 1px solid #d1cece;

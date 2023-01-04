@@ -3,12 +3,12 @@ import classes from "./Constructor.module.css";
 
 import ConctructorCheck from "./ConctructorCheck/ConctructorCheck";
 import ConstructorButton from "../../Buttons/ConstructorButton/ConstructorButton";
-import Textarea from "./Textarea/Textarea";
+import TextareaModule from "./TextareaModule/TextareaModule";
 import Question from "./Question/Question";
 import PreviewScreen from "../PreviewScreen/PreviewScreen";
 
 // Компонента Constructor отрисовывает блок с конструктором
-const Constructor = ({testConstructor, addAnswer, removeAnswer, changeValueText, addQuestion, removeQuestion}) => {
+const Constructor = ({testConstructor, addAnswer, removeAnswer, changeValueText, addQuestion, removeQuestion, changeWhatAnswerIsCorrect}) => {
     const questions = testConstructor.questions;
 
     return (
@@ -19,10 +19,10 @@ const Constructor = ({testConstructor, addAnswer, removeAnswer, changeValueText,
             <form action="">
                 <fieldset>
                     <legend>Введите название теста</legend>
-                    <Textarea placeholderText={testConstructor.testTitlePlaceholder}
-                              rowsCount={3}
-                              nameText={"title"}
-                              idText={"title"}
+                    <TextareaModule placeholderText={testConstructor.testTitlePlaceholder}
+                                    rowsCount={3}
+                                    nameText={"title"}
+                                    idText={"title"}
                     />
                 </fieldset>
                 <ConctructorCheck text={'Тест на время'}/>
@@ -32,7 +32,7 @@ const Constructor = ({testConstructor, addAnswer, removeAnswer, changeValueText,
                     {questions.map(question => {
                         return <div key={question.id + 1000} className={classes.questionBlock}>
                                     <Question
-                                        testConstructor={testConstructor}
+                                        changeWhatAnswerIsCorrect={changeWhatAnswerIsCorrect}
                                         question={question}
                                         addAnswer={addAnswer}
                                         removeAnswer={removeAnswer}

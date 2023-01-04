@@ -1,13 +1,13 @@
 import React from 'react';
-import "./Textarea.module.css";
+import "./TextareaModule.module.css";
 
-const Textarea = (props) => {
+const TextareaModule = (props) => {
     return (
 
             <textarea
                 name={props.nameText}
                 id={props.idText}
-                cols="76"
+                cols="93"
                 rows={props.rowsCount}
                 minLength='1'
                 maxLength='1000'
@@ -19,4 +19,4 @@ const Textarea = (props) => {
     );
 };
 
-export default Textarea;
+export default TextareaModule;

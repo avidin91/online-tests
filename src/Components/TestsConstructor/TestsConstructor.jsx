@@ -1,12 +1,10 @@
 import React, {useState} from 'react';
 
 import classes from "./TestsConstructor.module.css";
-import PreviewScreen from "./PreviewScreen/PreviewScreen";
 import Constructor from "./Constructor/Constructor";
 
 // Компонента TestsConstructor отрисовывает окно конструктора тестов полностью, включая окноп предварительного просмотра
 const TestsConstructor = () => {
-
     // State answers отвечает за состояние блока ответов
     const [testConstructor, setTestConstructor] = useState(
 
@@ -18,16 +16,19 @@ const TestsConstructor = () => {
                         questionText: '',
                         questionPlaceholder: 'Например: «Что такое число Пи в математике?»',
                         id: 1,
+                        multipleAnswers: false,
                         answers: [
                             {
                                 id: 1,
                                 placeholderText: 'Например: «Это половина длины окружности»',
                                 valueText: '',
+                                isCorrect: false,
                             },
                             {
                                 id: 2,
                                 placeholderText: 'Например: «Математическая постоянная, равная отношению длины окружности к её диаметру»',
                                 valueText: '',
+                                isCorrect: true,
                             },
                         ],
                     }
@@ -50,11 +51,13 @@ const TestsConstructor = () => {
                     id: 1,
                     placeholderText: 'Введите текст...',
                     valueText: '',
+                    isCorrect: false,
                 },
                 {
                     id: 2,
                     placeholderText: 'Введите текст...',
                     valueText: '',
+                    isCorrect: false,
                 },
             ],
         };
@@ -114,6 +117,7 @@ const TestsConstructor = () => {
             id: newId,
             placeholderText: 'Введите текст...',
             valueText: '',
+            isCorrect: false,
         }
         const newAnswers = [...answers, newAnswer];
         newTestConstructor.questions[questionId - 1].answers = newAnswers
@@ -151,6 +155,26 @@ const TestsConstructor = () => {
         setTestConstructor(newTestConstructor);
     }
 
+    const changeWhatAnswerIsCorrect = function (e, questionId) {
+        const newTestConstructor = {...testConstructor}
+        if (newTestConstructor.questions[questionId - 1].multipleAnswers === false) {
+            const newAnswer = newTestConstructor.questions[questionId - 1].answers.map(answer => {
+                const newAnswer = {...answer};
+                newAnswer.isCorrect = false
+                return newAnswer
+            })
+            newTestConstructor.questions[questionId - 1].answers = newAnswer
+            newTestConstructor.questions[questionId - 1].answers[e.target.id - 1].isCorrect = e.target.checked
+            setTestConstructor(newTestConstructor)
+        } else {
+            const newAnswer = {...newTestConstructor.questions[questionId - 1].answers[e.target.id - 1]}
+            newAnswer.isCorrect = e.target.checked
+            newTestConstructor.questions[questionId - 1].answers[e.target.id - 1] = newAnswer;
+            setTestConstructor(newTestConstructor)
+        }
+
+    }
+
     return (
         <div className={classes.main}>
             <p className={classes.mainP} >
@@ -164,6 +188,7 @@ const TestsConstructor = () => {
                     changeValueText={changeValueText}
                     addQuestion={addQuestion}
                     removeQuestion={removeQuestion}
+                    changeWhatAnswerIsCorrect={changeWhatAnswerIsCorrect}
                 />
 
             </div>

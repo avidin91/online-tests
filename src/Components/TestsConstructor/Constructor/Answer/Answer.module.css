@@ -1,42 +1,28 @@
 .answer {
     display: flex;
-    margin: 10px 0;
+    margin: 10px 0 20px 0;
+    padding: 10px 0;
+    border: 2px dotted #c7cb5e;
+    border-radius: 10px;
 }
 
 .answer label {
-    margin: auto;
-    width: 30px;
-    height: 30px;
+    margin: 0 5px;
 }
 
-.labelText {
+.chooseAnswerBlock {
+    margin: 10px 0;
+}
+
+.chooseAnswerBlock p {
+    margin: 0;
+}
+
+.chooseBlock {
+    margin: 10px 0;
     display: flex;
-    align-items: center;
 }
 
-.labelText p {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.buttonDeleteAnswer {
-    display: flex;
-    margin: auto ;
-    width: 80px;
-    height: 20px;
-    border-radius: 3px;
-    background-color: #f1f1f1;
-    align-items: center;
-    border: 1px solid black;
-}
-
-.buttonDeleteAnswer p {
-    font-size: 13px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.buttonDeleteAnswer:hover {
-    cursor: pointer;
-    background-color: #dfdfdf;
+span {
+    font-size: 11px;
 }
