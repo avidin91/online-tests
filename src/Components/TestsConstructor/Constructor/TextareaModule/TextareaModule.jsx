@@ -13,6 +13,7 @@ const TextareaModule = (props) => {
                 maxLength='1000'
                 required={true}
                 placeholder={props.placeholderText}
+                value=''
             >
 
             </textarea>

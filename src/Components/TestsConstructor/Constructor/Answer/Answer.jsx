@@ -41,16 +41,28 @@ const Answer = (props) => {
         }
     }
 
-    // useEffect(() => {
-    //     console.log('Первая загрузка и обновление props.isCorrect')
-    // }, [props.isCorrect])
-    //
-    // useEffect(() => {
-    //     console.log('Первая загрузка и обновление props.typeOfAnswers')
-    // }, [props.typeOfAnswers])
-    //
+    // Функция bgc получает пропсы checked. И если true, то делает фон правильного ответа зелёным.
+    const bgc = function () {
+        if (props.isCorrect === true) {
+            return {backgroundColor: '#7af392'}
+        } else {
+            return ''
+        };
+    }
+    const BgcStyle = bgc()
+
+    // Функция fwb получает пропсы checked. И если true, то делает span жирным.
+    const fwb = function () {
+        if (props.isCorrect === true) {
+            return {fontWeight: 'bold'}
+        } else {
+            return ''
+        };
+    }
+    const fWStyle = fwb()
+
     return (
-        <div className={classes.answer}>
+        <div className={classes.answer} style={{...BgcStyle}} >
             <label htmlFor="answer">
                 <div className={classes.chooseAnswerBlock}>
                     <p>
@@ -58,12 +70,12 @@ const Answer = (props) => {
                     </p>
                     <div className={classes.chooseBlock}>
                         <input type={props.typeOfAnswers}
-                               name='answer'
+                               name={'answer' + props.questionId}
                                checked={props.isCorrect}
                                id={props.id}
                                onChange={(e)=>{props.changeWhatAnswerIsCorrect(e, props.questionId)}}
                         />
-                        <span>
+                        <span style={{...fWStyle}}>
                             {props.correctText}
                         </span>
                     </div>

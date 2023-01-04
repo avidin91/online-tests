@@ -3,7 +3,6 @@ import classes from "./PreviewScreen.module.css";
 import PreviewScreenAnswer from "./PreviewScreenAnswer/PreviewScreenAnswer";
 
 // Компонента PreviewScreen отображает предварительный просмотр заполненого теста
-
 const PreviewScreen = ({testConstructor, questionId}) => {
     const questions = testConstructor.questions[0];
     const answers = questions.answers;
@@ -12,7 +11,7 @@ const PreviewScreen = ({testConstructor, questionId}) => {
         <div className={classes.previewScreen}>
             <div className={classes.title}>
                 <p>
-                    Окружности в математике и геометрии "7 класс"
+                    {testConstructor.testTitlePlaceholder}
                 </p>
             </div>
             <div className={classes.questionBlock}>
