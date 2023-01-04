@@ -17,18 +17,21 @@ const TestsConstructor = () => {
                         questionPlaceholder: 'Например: «Что такое число Пи в математике?»',
                         id: 1,
                         multipleAnswers: false,
+                        typeOfAnswers: 'radio',
                         answers: [
                             {
                                 id: 1,
                                 placeholderText: 'Например: «Это половина длины окружности»',
                                 valueText: '',
                                 isCorrect: false,
+                                correctText: 'Не правильный'
                             },
                             {
                                 id: 2,
                                 placeholderText: 'Например: «Математическая постоянная, равная отношению длины окружности к её диаметру»',
                                 valueText: '',
                                 isCorrect: true,
+                                correctText: 'Правильный',
                             },
                         ],
                     }
@@ -46,18 +49,22 @@ const TestsConstructor = () => {
             questionText: '',
             questionPlaceholder: 'Например: «Второй вопрос»',
             id: newId,
+            multipleAnswers: false,
+            typeOfAnswers: 'radio',
             answers: [
                 {
                     id: 1,
                     placeholderText: 'Введите текст...',
                     valueText: '',
                     isCorrect: false,
+                    correctText: 'Не правильный'
                 },
                 {
                     id: 2,
                     placeholderText: 'Введите текст...',
                     valueText: '',
                     isCorrect: false,
+                    correctText: 'Не правильный'
                 },
             ],
         };
@@ -118,6 +125,7 @@ const TestsConstructor = () => {
             placeholderText: 'Введите текст...',
             valueText: '',
             isCorrect: false,
+            correctText: 'Не правильный'
         }
         const newAnswers = [...answers, newAnswer];
         newTestConstructor.questions[questionId - 1].answers = newAnswers
@@ -155,20 +163,49 @@ const TestsConstructor = () => {
         setTestConstructor(newTestConstructor);
     }
 
+    // Функция isChecked проверяет, выбрано ли несколько ответов multipleAnswers: true, и в зависимости от результата меняет состояние multipleAnswers и typeOfAnswers.
+    const isChecked = function (e, questionId) {
+        const newTestConstructor = {...testConstructor};
+        newTestConstructor.questions[questionId-1] = {...newTestConstructor.questions[questionId-1]}
+        newTestConstructor.questions[questionId-1].multipleAnswers = e.target.checked
+        if(newTestConstructor.questions[questionId-1].multipleAnswers === true) {
+            newTestConstructor.questions[questionId-1].typeOfAnswers = 'checkbox'
+        } else {
+            newTestConstructor.questions[questionId-1].typeOfAnswers = 'radio'
+        }
+        setTestConstructor(newTestConstructor)
+
+    }
+
+    // Функция changeWhatAnswerIsCorrect меняет состояние ответов, присваивает всем правильным ответам isCorrect: true. Если выбран правильный ответ, и ответ может быть один, делает остальные ответы неправильными.
     const changeWhatAnswerIsCorrect = function (e, questionId) {
         const newTestConstructor = {...testConstructor}
+        const newQuestion = {...newTestConstructor.questions[questionId - 1]}
+        newTestConstructor.questions[questionId - 1] = newQuestion;
         if (newTestConstructor.questions[questionId - 1].multipleAnswers === false) {
             const newAnswer = newTestConstructor.questions[questionId - 1].answers.map(answer => {
-                const newAnswer = {...answer};
-                newAnswer.isCorrect = false
-                return newAnswer
+                const newAnswerIn = {...answer};
+                newAnswerIn.isCorrect = false
+                newAnswerIn.correctText = 'Не правильный'
+
+                return newAnswerIn
             })
             newTestConstructor.questions[questionId - 1].answers = newAnswer
             newTestConstructor.questions[questionId - 1].answers[e.target.id - 1].isCorrect = e.target.checked
+            if (newTestConstructor.questions[questionId - 1].answers[e.target.id - 1].isCorrect === false) {
+                newTestConstructor.questions[questionId - 1].answers[e.target.id - 1].correctText = 'Не правильный'
+            } else {
+                newTestConstructor.questions[questionId - 1].answers[e.target.id - 1].correctText = 'Правильный'
+            }
             setTestConstructor(newTestConstructor)
         } else {
             const newAnswer = {...newTestConstructor.questions[questionId - 1].answers[e.target.id - 1]}
             newAnswer.isCorrect = e.target.checked
+            if (newAnswer.isCorrect === false) {
+                newAnswer.correctText = 'Не правильный'
+            } else {
+                newAnswer.correctText = 'Правильный'
+            }
             newTestConstructor.questions[questionId - 1].answers[e.target.id - 1] = newAnswer;
             setTestConstructor(newTestConstructor)
         }
@@ -188,6 +225,7 @@ const TestsConstructor = () => {
                     changeValueText={changeValueText}
                     addQuestion={addQuestion}
                     removeQuestion={removeQuestion}
+                    isChecked={isChecked}
                     changeWhatAnswerIsCorrect={changeWhatAnswerIsCorrect}
                 />
 

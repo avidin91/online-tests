@@ -1,4 +1,3 @@
-import React, {useState} from 'react';
 import TextareaModule from "../TextareaModule/TextareaModule";
 import ConctructorCheck from "../ConctructorCheck/ConctructorCheck";
 import classes from "./Question.module.css";
@@ -8,22 +7,10 @@ import {faCircleXmark} from "@fortawesome/free-regular-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 // Компонента Question отрисовывает поле с блоком "Вопрос"
-const Question = ({question, addAnswer, removeAnswer, changeValueText, removeQuestion, changeWhatAnswerIsCorrect}) => {
+const Question = ({question, addAnswer, removeAnswer, changeValueText, removeQuestion, changeWhatAnswerIsCorrect, isChecked}) => {
     const answers = question.answers;
-
-    // Состояние компоненты Answer, и в нём input будет либо checkbox либо radio. В зависимости от пропсов из компоненты ConctructorCheck, и выбрано ли "Несколько вариантов ответов" или нет.
-    const [typeOfAnswers, setTypeOfAnswers] = useState(
-        'radio'
-    )
-
-    // Функция isChecked принимает пропсы из ConctructorCheck "Несколько вариантов ответов". И зависимости от них меняет состояние input на radio или checkbox внутри компоненты Answer.
-    const isChecked = function (e) {
-        if (e.target.checked === false) {
-            setTypeOfAnswers('radio')
-        } else {
-            setTypeOfAnswers('checkbox')
-        }
-    }
+    const typeOfAnswers = question.typeOfAnswers;
+    const multipleAnswersChecked = question.multipleAnswers;
 
     return (
             <fieldset>
@@ -41,7 +28,12 @@ const Question = ({question, addAnswer, removeAnswer, changeValueText, removeQue
                           idText={"question"}
                 />
 
-                <ConctructorCheck text={'Несколько вариантов ответа'} isChecked={isChecked}/>
+                <ConctructorCheck
+                    text={'Несколько вариантов ответа'}
+                    multipleAnswersChecked={multipleAnswersChecked}
+                    isChecked={isChecked}
+                    questionId={question.id}
+                />
                 <div>
                     <p className={classes.answerP}>Добавьте варианты ответа</p>
                     {answers.map((answer, index) => {
@@ -52,6 +44,7 @@ const Question = ({question, addAnswer, removeAnswer, changeValueText, removeQue
                             placeholderText={answer.placeholderText}
                             valueText={answer.valueText}
                             isCorrect={answer.isCorrect}
+                            correctText={answer.correctText}
                             changeWhatAnswerIsCorrect={changeWhatAnswerIsCorrect}
                             key={answer.id}
                             changeValueText={changeValueText}

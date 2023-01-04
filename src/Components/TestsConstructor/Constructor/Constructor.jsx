@@ -8,7 +8,7 @@ import Question from "./Question/Question";
 import PreviewScreen from "../PreviewScreen/PreviewScreen";
 
 // Компонента Constructor отрисовывает блок с конструктором
-const Constructor = ({testConstructor, addAnswer, removeAnswer, changeValueText, addQuestion, removeQuestion, changeWhatAnswerIsCorrect}) => {
+const Constructor = ({testConstructor, addAnswer, removeAnswer, changeValueText, addQuestion, removeQuestion, changeWhatAnswerIsCorrect, isChecked}) => {
     const questions = testConstructor.questions;
 
     return (
@@ -38,9 +38,11 @@ const Constructor = ({testConstructor, addAnswer, removeAnswer, changeValueText,
                                         removeAnswer={removeAnswer}
                                         changeValueText={changeValueText}
                                         removeQuestion={removeQuestion}
+                                        isChecked={isChecked}
                                         key={question.id}
                                     />
                                     <PreviewScreen
+                                        questionId={question.id}
                                         testConstructor={testConstructor}
                                         key={question.id + 100}
                                     />

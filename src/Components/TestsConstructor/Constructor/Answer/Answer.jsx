@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
 import classes from "./Answer.module.css";
 import ConstructorButton from "../../../Buttons/ConstructorButton/ConstructorButton";
+import {useEffect} from "react";
 
 // Компонента Answer отрисовывает блок с ответами
 const Answer = (props) => {
@@ -41,16 +41,14 @@ const Answer = (props) => {
         }
     }
 
-    // Функция changeText нужна для того, чтобы передать в аргументах id вопроса.
-    const changeText = function (e) {
-        props.changeValueText(e, props.questionId)
-    }
-
-    // Функция changeCorrect отправляет данные об изменении cheacked атрибута в функцию changeWhatAnswerIsCorrect внутри компоненты TestConstructor, с целью изменить состояние выбранного правильного ответа.
-    const changeCorrect = function (e) {
-        props.changeWhatAnswerIsCorrect(e, props.questionId)
-    }
-
+    // useEffect(() => {
+    //     console.log('Первая загрузка и обновление props.isCorrect')
+    // }, [props.isCorrect])
+    //
+    // useEffect(() => {
+    //     console.log('Первая загрузка и обновление props.typeOfAnswers')
+    // }, [props.typeOfAnswers])
+    //
     return (
         <div className={classes.answer}>
             <label htmlFor="answer">
@@ -63,10 +61,10 @@ const Answer = (props) => {
                                name='answer'
                                checked={props.isCorrect}
                                id={props.id}
-                               onChange={changeCorrect}
+                               onChange={(e)=>{props.changeWhatAnswerIsCorrect(e, props.questionId)}}
                         />
                         <span>
-                            {props.isCorrect ? 'Правильный' : 'Не правильный'}
+                            {props.correctText}
                         </span>
                     </div>
                 </div>
@@ -81,7 +79,7 @@ const Answer = (props) => {
                 id={props.id}
                 placeholder={props.placeholderText}
                 value={valueText()}
-                onChange={changeText}
+                onChange={(e) => {props.changeValueText(e, props.questionId)}}
             >
 
             </textarea>

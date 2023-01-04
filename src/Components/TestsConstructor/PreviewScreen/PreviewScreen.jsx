@@ -4,7 +4,7 @@ import PreviewScreenAnswer from "./PreviewScreenAnswer/PreviewScreenAnswer";
 
 // Компонента PreviewScreen отображает предварительный просмотр заполненого теста
 
-const PreviewScreen = ({testConstructor}) => {
+const PreviewScreen = ({testConstructor, questionId}) => {
     const questions = testConstructor.questions[0];
     const answers = questions.answers;
 
@@ -18,7 +18,7 @@ const PreviewScreen = ({testConstructor}) => {
             <div className={classes.questionBlock}>
                 <div>
                     <p>
-                        Вопрос <span>1</span> из <span>30</span>
+                        Вопрос <span>{questionId}</span> из <span>{testConstructor.questions.length}</span>
                     </p>
                 </div>
                 <div>
