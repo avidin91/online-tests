@@ -47,7 +47,7 @@ const TestsConstructor = () => {
         const newId = lastId + 1;
         const newQuestion = {
             questionText: '',
-            questionPlaceholder: 'Например: «Второй вопрос»',
+            questionPlaceholder: 'Например: «Новый вопрос»',
             id: newId,
             multipleAnswers: false,
             typeOfAnswers: 'radio',
@@ -212,6 +212,21 @@ const TestsConstructor = () => {
 
     }
 
+    // Функция changeTitleText меняет состояние. Изменяет заголовок теста.
+    const changeTitleText = function (e) {
+        const newTestConstructor = {...testConstructor};
+        newTestConstructor.testTitleText = e.target.value;
+        setTestConstructor(newTestConstructor)
+    }
+
+    // Функция changeQuestionText меняет состояние. Изменяет название вопроса.
+    const changeQuestionText = function (e, questionId) {
+        const newTestConstructor = {...testConstructor};
+        newTestConstructor.questions[questionId - 1] = {...newTestConstructor.questions[questionId - 1]}
+        newTestConstructor.questions[questionId - 1].questionText = e.target.value
+        setTestConstructor(newTestConstructor)
+    }
+
     return (
         <div className={classes.main}>
             <p className={classes.mainP} >
@@ -227,6 +242,8 @@ const TestsConstructor = () => {
                     removeQuestion={removeQuestion}
                     isChecked={isChecked}
                     changeWhatAnswerIsCorrect={changeWhatAnswerIsCorrect}
+                    changeTitleText={changeTitleText}
+                    changeQuestionText={changeQuestionText}
                 />
 
             </div>

@@ -5,7 +5,6 @@ import classes from "./PreviewScreenAnswer.module.css";
 
 const PreviewScreenAnswer = (props) => {
     // Функция number присваивает букву в зависимости от пришедшего значения id
-
     const number = function() {
         if (props.id === 1) {
             return 'а)'

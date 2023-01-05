@@ -1,6 +1,5 @@
 import classes from "./Answer.module.css";
 import ConstructorButton from "../../../Buttons/ConstructorButton/ConstructorButton";
-import {useEffect} from "react";
 
 // Компонента Answer отрисовывает блок с ответами
 const Answer = (props) => {

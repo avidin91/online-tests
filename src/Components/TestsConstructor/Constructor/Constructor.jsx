@@ -8,7 +8,18 @@ import Question from "./Question/Question";
 import PreviewScreen from "../PreviewScreen/PreviewScreen";
 
 // Компонента Constructor отрисовывает блок с конструктором
-const Constructor = ({testConstructor, addAnswer, removeAnswer, changeValueText, addQuestion, removeQuestion, changeWhatAnswerIsCorrect, isChecked}) => {
+const Constructor = ({
+                         testConstructor,
+                         addAnswer,
+                         removeAnswer,
+                         changeValueText,
+                         addQuestion,
+                         removeQuestion,
+                         changeWhatAnswerIsCorrect,
+                         isChecked,
+                         changeTitleText,
+                         changeQuestionText
+                     }) => {
     const questions = testConstructor.questions;
 
     return (
@@ -20,9 +31,12 @@ const Constructor = ({testConstructor, addAnswer, removeAnswer, changeValueText,
                 <fieldset>
                     <legend>Введите название теста</legend>
                     <TextareaModule placeholderText={testConstructor.testTitlePlaceholder}
+                                    valueText={testConstructor.testTitleText}
                                     rowsCount={3}
                                     nameText={"title"}
                                     idText={"title"}
+                                    id={'testTitleText'}
+                                    changeTitleText={changeTitleText}
                     />
                 </fieldset>
                 <ConctructorCheck text={'Тест на время'}/>
@@ -31,22 +45,24 @@ const Constructor = ({testConstructor, addAnswer, removeAnswer, changeValueText,
                 <form action="">
                     {questions.map(question => {
                         return <div key={question.id + 1000} className={classes.questionBlock}>
-                                    <Question
-                                        changeWhatAnswerIsCorrect={changeWhatAnswerIsCorrect}
-                                        question={question}
-                                        addAnswer={addAnswer}
-                                        removeAnswer={removeAnswer}
-                                        changeValueText={changeValueText}
-                                        removeQuestion={removeQuestion}
-                                        isChecked={isChecked}
-                                        key={question.id}
-                                    />
-                                    <PreviewScreen
-                                        questionId={question.id}
-                                        testConstructor={testConstructor}
-                                        key={question.id + 100}
-                                    />
-                                </div>
+                            <Question
+                                changeWhatAnswerIsCorrect={changeWhatAnswerIsCorrect}
+                                question={question}
+                                addAnswer={addAnswer}
+                                removeAnswer={removeAnswer}
+                                changeValueText={changeValueText}
+                                removeQuestion={removeQuestion}
+                                isChecked={isChecked}
+                                changeQuestionText={changeQuestionText}
+                                key={question.id}
+                            />
+                            <PreviewScreen
+                                questionId={question.id}
+                                question={question}
+                                testConstructor={testConstructor}
+                                key={question.id + 100}
+                            />
+                        </div>
 
                     })}
                     <ConstructorButton
