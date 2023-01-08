@@ -6,6 +6,7 @@ const TextareaModule = ({
                             questionId,
                             changeTitleText,
                             changeQuestionText,
+                            changeTheoreticalPartText,
                             valueText,
                             nameText,
                             idText,
@@ -17,9 +18,10 @@ const TextareaModule = ({
     const checkPropId = function (e) {
         if (id === 'testTitleText') {
             return changeTitleText(e)
-        }
-        if (id === `question=${questionId}`) {
+        } if (id === `question=${questionId}`) {
             return changeQuestionText(e, questionId)
+        } if (id === 'theoretical') {
+            return changeTheoreticalPartText(e, questionId)
         }
     }
 
@@ -38,7 +40,7 @@ const TextareaModule = ({
             onChange={(e) => checkPropId(e)}
         >
 
-            </textarea>
+        </textarea>
     );
 };
 

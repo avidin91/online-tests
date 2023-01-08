@@ -1,5 +1,5 @@
 import TextareaModule from "../TextareaModule/TextareaModule";
-import ConctructorCheck from "../ConctructorCheck/ConctructorCheck";
+import ConstructorCheck from "../ConstructorCheck/ConstructorCheck";
 import classes from "./Question.module.css";
 import Answer from "../Answer/Answer";
 import ConstructorButton from "../../../Buttons/ConstructorButton/ConstructorButton";
@@ -15,7 +15,9 @@ const Question = ({
                       removeQuestion,
                       changeWhatAnswerIsCorrect,
                       isChecked,
-                      changeQuestionText
+                      changeQuestionText,
+                      checkTheoretical,
+                      changeTheoreticalPartText
                   }) => {
     const answers = question.answers;
     const typeOfAnswers = question.typeOfAnswers;
@@ -42,11 +44,12 @@ const Question = ({
                             id={`question=${question.id}`}
             />
 
-            <ConctructorCheck
+            <ConstructorCheck
                 text={'Несколько вариантов ответа'}
                 multipleAnswersChecked={multipleAnswersChecked}
                 isChecked={isChecked}
                 questionId={question.id}
+                id={'multipleAnswers'}
             />
             <div>
                 <p className={classes.answerP}>Добавьте варианты ответа</p>
@@ -73,7 +76,21 @@ const Question = ({
                     id={question.id}
                 />
             </div>
-            <ConctructorCheck text={'Добавить теоретическую часть в ответ'}/>
+            <ConstructorCheck
+                text={'Добавить теоретическую часть в ответ'}
+                id={'theoretical'}
+                questionId={question.id}
+                checkTheoretical={checkTheoretical}
+                isTheoreticalPart={question.isTheoreticalPart}
+            />
+            {question.isTheoreticalPart && <TextareaModule
+            placeholderText={question.theoreticalPartPlaceholderText}
+            valueText={question.theoreticalPartText}
+            changeTheoreticalPartText={changeTheoreticalPartText}
+            questionId={question.id}
+            id={'theoretical'}
+            />}
+
         </fieldset>
     );
 };

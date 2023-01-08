@@ -10,7 +10,9 @@ const TestsConstructor = () => {
 
             {
                 testTitleText: '',
-                testTitlePlaceholder: 'Например: «Окружности в математике и геометрии "7класс"»',
+                testTitlePlaceholder: 'Например: «Окружности в математике и геометрии "7 класс"»',
+                forTime: false,
+                timer: 0,
                 questions: [
                     {
                         questionText: '',
@@ -18,6 +20,9 @@ const TestsConstructor = () => {
                         id: 1,
                         multipleAnswers: false,
                         typeOfAnswers: 'radio',
+                        isTheoreticalPart: false,
+                        theoreticalPartPlaceholderText: 'Введите текст теоретической части...',
+                        theoreticalPartText: '',
                         answers: [
                             {
                                 id: 1,
@@ -51,6 +56,9 @@ const TestsConstructor = () => {
             id: newId,
             multipleAnswers: false,
             typeOfAnswers: 'radio',
+            isTheoreticalPart: false,
+            theoreticalPartPlaceholderText: 'Введите текст теоретической части...',
+            theoreticalPartText: '',
             answers: [
                 {
                     id: 1,
@@ -95,11 +103,18 @@ const TestsConstructor = () => {
                 questionText: '',
                 questionPlaceholder: 'Первый вопрос',
                 id: 1,
+                multipleAnswers: false,
+                typeOfAnswers: 'radio',
+                isTheoreticalPart: false,
+                theoreticalPartPlaceholderText: 'Введите текст теоретической части...',
+                theoreticalPartText: '',
                 answers: [
                     {
                         id: 1,
                         placeholderText: 'Введите текст...',
                         valueText: '',
+                        isCorrect: false,
+                        correctText: 'Не правильный'
                     },
                 ],
             };
@@ -227,6 +242,37 @@ const TestsConstructor = () => {
         setTestConstructor(newTestConstructor)
     }
 
+    // Функция checkTheoretical позволяет менять состояние чекмбокса с добавлением теоретической части. Убирает и ставит галочку.
+    const checkTheoretical = function (e, questionId) {
+        const newTestConstructor = {...testConstructor};
+        const newQuestions = [...newTestConstructor.questions];
+        newTestConstructor.questions = newQuestions;
+        const newQuestion = {...newTestConstructor.questions[questionId-1]};
+        newTestConstructor.questions[questionId-1] = newQuestion;
+        newTestConstructor.questions[questionId-1].isTheoreticalPart = e.target.checked;
+        if (newTestConstructor.questions[questionId-1].isTheoreticalPart === false) {
+            newTestConstructor.questions[questionId-1].theoreticalPartText = '';
+        }
+        setTestConstructor(newTestConstructor)
+    }
+
+    // Функция changeTheoreticalPartText меняет состояние. Позволяет менять текст теоретической части.
+    const changeTheoreticalPartText = function (e, questionId) {
+        const newTestConstructor = {...testConstructor};
+        const newQuestions = [...newTestConstructor.questions];
+        newTestConstructor.questions = newQuestions;
+        const newQuestion = {...newTestConstructor.questions[questionId-1]};
+        newTestConstructor.questions[questionId-1] = newQuestion;
+        newTestConstructor.questions[questionId-1].theoreticalPartText = e.target.value;
+        setTestConstructor(newTestConstructor)
+    }
+
+    const setTimer = function (e) {
+        const newTestConstructor = {...testConstructor};
+        newTestConstructor.forTime = e.target.checked;
+        setTestConstructor(newTestConstructor)
+    }
+
     return (
         <div className={classes.main}>
             <p className={classes.mainP} >
@@ -244,6 +290,9 @@ const TestsConstructor = () => {
                     changeWhatAnswerIsCorrect={changeWhatAnswerIsCorrect}
                     changeTitleText={changeTitleText}
                     changeQuestionText={changeQuestionText}
+                    checkTheoretical={checkTheoretical}
+                    changeTheoreticalPartText={changeTheoreticalPartText}
+                    setTimer={setTimer}
                 />
 
             </div>

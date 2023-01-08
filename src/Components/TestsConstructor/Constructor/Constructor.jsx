@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from "./Constructor.module.css";
 
-import ConctructorCheck from "./ConctructorCheck/ConctructorCheck";
+import ConstructorCheck from "./ConstructorCheck/ConstructorCheck";
 import ConstructorButton from "../../Buttons/ConstructorButton/ConstructorButton";
 import TextareaModule from "./TextareaModule/TextareaModule";
 import Question from "./Question/Question";
@@ -18,7 +18,10 @@ const Constructor = ({
                          changeWhatAnswerIsCorrect,
                          isChecked,
                          changeTitleText,
-                         changeQuestionText
+                         changeQuestionText,
+                         checkTheoretical,
+                         changeTheoreticalPartText,
+                         setTimer
                      }) => {
     const questions = testConstructor.questions;
 
@@ -39,7 +42,12 @@ const Constructor = ({
                                     changeTitleText={changeTitleText}
                     />
                 </fieldset>
-                <ConctructorCheck text={'Тест на время'}/>
+                <ConstructorCheck
+                    text={'Тест на время'}
+                    id={'timer'}
+                    forTime={testConstructor.forTime}
+                    setTimer={setTimer}
+                />
             </form>
             <div>
                 <form action="">
@@ -54,6 +62,8 @@ const Constructor = ({
                                 removeQuestion={removeQuestion}
                                 isChecked={isChecked}
                                 changeQuestionText={changeQuestionText}
+                                checkTheoretical={checkTheoretical}
+                                changeTheoreticalPartText={changeTheoreticalPartText}
                                 key={question.id}
                             />
                             <PreviewScreen

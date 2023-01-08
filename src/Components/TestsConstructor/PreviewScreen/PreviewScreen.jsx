@@ -4,13 +4,12 @@ import PreviewScreenAnswer from "./PreviewScreenAnswer/PreviewScreenAnswer";
 
 // Компонента PreviewScreen отображает предварительный просмотр заполненого теста
 const PreviewScreen = ({testConstructor, questionId, question}) => {
-    const questions = testConstructor.questions[0];
-    const answers = testConstructor.questions[questionId-1].answers;
+    const answers = question.answers;
 
     // Функция checkFirstTitle убирает кавычки и слово "Например" из заголовка.
     const checkFirstTitle = function () {
-        if (testConstructor.testTitlePlaceholder === 'Например: «Окружности в математике и геометрии "7класс"»') {
-            return 'Окружности в математике и геометрии «7класс»'
+        if (testConstructor.testTitlePlaceholder === 'Например: «Окружности в математике и геометрии "7 класс"»') {
+            return 'Окружности в математике и геометрии «7 класс»'
         } else {
             return testConstructor.testTitlePlaceholder
         }
@@ -47,6 +46,8 @@ const PreviewScreen = ({testConstructor, questionId, question}) => {
                 </div>
                 {answers.map((answer, index) => {
                     return <PreviewScreenAnswer
+                        typeOfAnswers={question.typeOfAnswers}
+                        questionId={questionId}
                         placeholderText={answer.placeholderText}
                         valueText={answer.valueText}
                         key={index}

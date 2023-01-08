@@ -25,6 +25,7 @@ const PreviewScreenAnswer = (props) => {
         }
     }
 
+    // Функция text проверяет есть ли текст, и если его нет, то показывает текст из плейсхолдера
     const text = function () {
         if (props.valueText === '') {
             return props.placeholderText
@@ -35,7 +36,7 @@ const PreviewScreenAnswer = (props) => {
 
     return (
         <div className={classes.answer}>
-            <input type="radio" id="" name='question1'/>
+            <input type={props.typeOfAnswers} id="" name='question1'/>
             <div className={classes.answerText}>
                 <p>
                     {number()} {text()}
