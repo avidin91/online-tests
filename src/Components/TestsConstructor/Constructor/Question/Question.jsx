@@ -1,3 +1,4 @@
+import React from 'react';
 import TextareaModule from "../TextareaModule/TextareaModule";
 import ConstructorCheck from "../ConstructorCheck/ConstructorCheck";
 import classes from "./Question.module.css";
@@ -5,6 +6,7 @@ import Answer from "../Answer/Answer";
 import ConstructorButton from "../../../Buttons/ConstructorButton/ConstructorButton";
 import {faCircleXmark} from "@fortawesome/free-regular-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+
 
 // Компонента Question отрисовывает поле с блоком "Вопрос"
 const Question = ({

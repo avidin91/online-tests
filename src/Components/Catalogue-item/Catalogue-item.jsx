@@ -2,6 +2,7 @@ import React from 'react';
 import classes from "./Catalogue-item.module.css";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faStar, faHeart, faUser, faComment } from '@fortawesome/free-regular-svg-icons';
+import {NavLink} from "react-router-dom";
 
 
 
@@ -10,10 +11,10 @@ const CatalogueItem = (props) => {
         <div className={classes.main}>
             <div className={classes.info}>
                 <div className={classes.title}>
-                    <a href="">{props.item.title}</a>
+                    <NavLink to="">{props.item.title}</NavLink>
                 </div>
                 <div className={classes.author}>
-                    <a href="">{props.item.author}</a>
+                    <NavLink to="">{props.item.author}</NavLink>
                 </div>
                 <div  className={classes.items}>
                     <div className={classes.likesQty}>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 
 import classes from "./TestsConstructor.module.css";
 import Constructor from "./Constructor/Constructor";
@@ -179,7 +179,7 @@ const TestsConstructor = () => {
     }
 
     // Функция isChecked проверяет, выбрано ли несколько ответов multipleAnswers: true, и в зависимости от результата меняет состояние multipleAnswers и typeOfAnswers.
-    const isChecked = function (e, questionId) {
+    const isChecked = useCallback(function (e, questionId) {
         const newTestConstructor = {...testConstructor};
         newTestConstructor.questions[questionId-1] = {...newTestConstructor.questions[questionId-1]}
         newTestConstructor.questions[questionId-1].multipleAnswers = e.target.checked
@@ -190,7 +190,7 @@ const TestsConstructor = () => {
         }
         setTestConstructor(newTestConstructor)
 
-    }
+    },[])
 
     // Функция changeWhatAnswerIsCorrect меняет состояние ответов, присваивает всем правильным ответам isCorrect: true. Если выбран правильный ответ, и ответ может быть один, делает остальные ответы неправильными.
     const changeWhatAnswerIsCorrect = function (e, questionId) {

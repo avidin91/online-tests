@@ -4,6 +4,8 @@ import PreviewScreenAnswer from "./PreviewScreenAnswer/PreviewScreenAnswer";
 
 // Компонента PreviewScreen отображает предварительный просмотр заполненого теста
 const PreviewScreen = ({testConstructor, questionId, question}) => {
+
+    // console.log('PreviewScreen перерисовался')
     const answers = question.answers;
 
     // Функция checkFirstTitle убирает кавычки и слово "Например" из заголовка.

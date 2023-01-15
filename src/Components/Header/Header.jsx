@@ -4,13 +4,14 @@ import logo from '../../img/logo.png';
 import SmallButton from "../Buttons/Small-button/SmallButton";
 import Logo from "../Logo/Logo";
 import EnterButton from "../Buttons/Enter-button/EnterButton";
+import {NavLink} from "react-router-dom";
 
 const Header = () => {
     return (
         <div className={classes.head}>
-                <a href="/">
+                <NavLink to="/">
                     <img src={logo} alt="Logo"/>
-                </a>
+                </NavLink>
                 <div className={classes.descriptor}>
                     <div className={classes.descriptorP}>
                         <p>Конструктор тестов и опросов для самостоятельной подготовки</p>
