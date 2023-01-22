@@ -1,72 +1,12 @@
 import React from 'react';
 import classes from "./OnlineTests.module.css";
 import CatalogueItem from "../Catalogue-item/Catalogue-item";
-import logo from '../../img/logos-for-tests/orig.png';
+import {useSelector} from "react-redux";
 
-const object = [
-    {
-        title: '1С Программист для начинающих',
-            author: 'Антоний Бандерос',
-            logo,
-            price: 'free',
-            inFavorites: false,
-            likesQty: 12,
-            doneQty: 3,
-            commentsQty: 1
-    },
-    {
-        title: '1С Программист для начинающих',
-            author: 'Антоний Бандерос',
-            logo,
-            price: 'free',
-            inFavorites: false,
-            likesQty: 12,
-            doneQty: 3,
-            commentsQty: 1
-    },
-    {
-        title: '1С Программист для начинающих',
-            author: 'Антоний Бандерос',
-            logo,
-            price: 1200,
-            inFavorites: false,
-            likesQty: 12,
-            doneQty: 3,
-            commentsQty: 1
-    },
-    {
-        title: '1С Программист для начинающих',
-            author: 'Антоний Бандерос',
-            logo,
-            price: 'free',
-            inFavorites: false,
-            likesQty: 12,
-            doneQty: 3,
-            commentsQty: 1
-    },
-    {
-        title: '1С Программист для начинающих',
-            author: 'Антоний Бандерос',
-            logo,
-            price: 'free',
-            inFavorites: false,
-            likesQty: 12,
-            doneQty: 3,
-            commentsQty: 1
-    },
-    {
-        title: '1С Программист для начинающих',
-            author: 'Антоний Бандерос',
-            logo,
-            price: 500,
-            inFavorites: false,
-            likesQty: 12,
-            doneQty: 3,
-            commentsQty: 1
-    },
-]
 
 const OnlineTests = () => {
+    const onlineTestsState = useSelector(store => store.onlineTestsStore)
+
     return (
         <div className={classes.main}>
             <div className={classes.title}>
@@ -90,7 +30,7 @@ const OnlineTests = () => {
                 </div>
             </div>
             <div className={classes.content}>
-                {object.map((item, index) =>
+                {onlineTestsState.map((item, index) =>
                     <CatalogueItem item={item} key={index}/>
                 )}
             </div>

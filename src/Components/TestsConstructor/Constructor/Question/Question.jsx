@@ -1,7 +1,9 @@
 import React from 'react';
+import classes from "./Question.module.css";
+import {useDispatch} from "react-redux";
+import {removeQuestion} from "../../../../store/testConstructorStore/testConstructorSlice";
 import TextareaModule from "../TextareaModule/TextareaModule";
 import ConstructorCheck from "../ConstructorCheck/ConstructorCheck";
-import classes from "./Question.module.css";
 import Answer from "../Answer/Answer";
 import ConstructorButton from "../../../Buttons/ConstructorButton/ConstructorButton";
 import {faCircleXmark} from "@fortawesome/free-regular-svg-icons";
@@ -11,16 +13,13 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 // Компонента Question отрисовывает поле с блоком "Вопрос"
 const Question = ({
                       question,
-                      addAnswer,
-                      removeAnswer,
-                      changeValueText,
-                      removeQuestion,
                       changeWhatAnswerIsCorrect,
-                      isChecked,
                       changeQuestionText,
                       checkTheoretical,
                       changeTheoreticalPartText
                   }) => {
+
+    const dispatch = useDispatch();
     const answers = question.answers;
     const typeOfAnswers = question.typeOfAnswers;
     const multipleAnswersChecked = question.multipleAnswers;
@@ -28,7 +27,10 @@ const Question = ({
     return (
         <fieldset>
             <legend>Вопрос {question.id}</legend>
-            <div className={classes.buttonDelete} onClick={removeQuestion}>
+            <div className={classes.buttonDelete} onClick={(e) => {
+                const tergetId = e.target.id;
+                return dispatch(removeQuestion({tergetId}))}
+            }>
                 <p id={question.id}>
                     Удалить вопрос
                 </p>
@@ -49,7 +51,6 @@ const Question = ({
             <ConstructorCheck
                 text={'Несколько вариантов ответа'}
                 multipleAnswersChecked={multipleAnswersChecked}
-                isChecked={isChecked}
                 questionId={question.id}
                 id={'multipleAnswers'}
             />
@@ -66,14 +67,11 @@ const Question = ({
                         correctText={answer.correctText}
                         changeWhatAnswerIsCorrect={changeWhatAnswerIsCorrect}
                         key={answer.id}
-                        changeValueText={changeValueText}
-                        removeAnswer={removeAnswer}
                     />
 
 
                 })}
                 <ConstructorButton
-                    addAnswer={addAnswer}
                     text={'Добавить ответ'}
                     id={question.id}
                 />

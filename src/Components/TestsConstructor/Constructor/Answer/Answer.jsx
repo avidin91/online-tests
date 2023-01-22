@@ -1,8 +1,12 @@
 import classes from "./Answer.module.css";
 import ConstructorButton from "../../../Buttons/ConstructorButton/ConstructorButton";
+import {useDispatch} from "react-redux";
+import {changeValueText, changeWhatAnswerIsCorrect} from "../../../../store/testConstructorStore/testConstructorSlice";
 
 // Компонента Answer отрисовывает блок с ответами
 const Answer = (props) => {
+    const dispatch = useDispatch();
+
     // Функция number проставляет буквенное значение в блоке с вопросов в зависимости от пришедшего id
     const number = function () {
         if (props.id === 1) {
@@ -60,6 +64,8 @@ const Answer = (props) => {
     }
     const fWStyle = fwb()
 
+    const questionId = props.questionId
+
     return (
         <div className={classes.answer} style={{...BgcStyle}} >
             <label htmlFor="answer">
@@ -72,7 +78,12 @@ const Answer = (props) => {
                                name={'answer' + props.questionId}
                                checked={props.isCorrect}
                                id={props.id}
-                               onChange={(e)=>{props.changeWhatAnswerIsCorrect(e, props.questionId)}}
+                               onChange={(e)=>{
+                                   const questionId = props.questionId;
+                                   const targetId = e.target.id;
+                                   const checked = e.target.checked;
+                                   return dispatch(changeWhatAnswerIsCorrect({targetId, questionId, checked}))
+                               }}
                         />
                         <span style={{...fWStyle}}>
                             {props.correctText}
@@ -90,13 +101,16 @@ const Answer = (props) => {
                 id={props.id}
                 placeholder={props.placeholderText}
                 value={valueText()}
-                onChange={(e) => {props.changeValueText(e, props.questionId)}}
+                onChange={(e) => {
+                    const targetId = e.target.id;
+                    const targetValue = e.target.value
+                    return dispatch(changeValueText({targetId, targetValue, questionId}))
+                }}
             >
 
             </textarea>
             <ConstructorButton
                 text={'Удалить'}
-                removeAnswer={props.removeAnswer}
                 id={props.id}
                 questionId={props.questionId}
             />

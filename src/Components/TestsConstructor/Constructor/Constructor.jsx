@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from "./Constructor.module.css";
-
+import {useSelector} from "react-redux";
 import ConstructorCheck from "./ConstructorCheck/ConstructorCheck";
 import ConstructorButton from "../../Buttons/ConstructorButton/ConstructorButton";
 import TextareaModule from "./TextareaModule/TextareaModule";
@@ -9,21 +9,18 @@ import PreviewScreen from "../PreviewScreen/PreviewScreen";
 
 // Компонента Constructor отрисовывает блок с конструктором
 const Constructor = ({
-                         testConstructor,
-                         addAnswer,
-                         removeAnswer,
-                         changeValueText,
-                         addQuestion,
-                         removeQuestion,
                          changeWhatAnswerIsCorrect,
-                         isChecked,
                          changeTitleText,
                          changeQuestionText,
                          checkTheoretical,
                          changeTheoreticalPartText,
                          setTimer
                      }) => {
-    const questions = testConstructor.questions;
+
+
+    const testConstructorState = useSelector(store => store.testConstructorStore)
+    const questions = testConstructorState.questions;
+
 
     return (
         <div className={classes.constructor}>
@@ -33,8 +30,8 @@ const Constructor = ({
             <form action="">
                 <fieldset>
                     <legend>Введите название теста</legend>
-                    <TextareaModule placeholderText={testConstructor.testTitlePlaceholder}
-                                    valueText={testConstructor.testTitleText}
+                    <TextareaModule placeholderText={testConstructorState.testTitlePlaceholder}
+                                    valueText={testConstructorState.testTitleText}
                                     rowsCount={3}
                                     nameText={"title"}
                                     idText={"title"}
@@ -45,7 +42,7 @@ const Constructor = ({
                 <ConstructorCheck
                     text={'Тест на время'}
                     id={'timer'}
-                    forTime={testConstructor.forTime}
+                    forTime={testConstructorState.forTime}
                     setTimer={setTimer}
                 />
             </form>
@@ -56,11 +53,6 @@ const Constructor = ({
                             <Question
                                 changeWhatAnswerIsCorrect={changeWhatAnswerIsCorrect}
                                 question={question}
-                                addAnswer={addAnswer}
-                                removeAnswer={removeAnswer}
-                                changeValueText={changeValueText}
-                                removeQuestion={removeQuestion}
-                                isChecked={isChecked}
                                 changeQuestionText={changeQuestionText}
                                 checkTheoretical={checkTheoretical}
                                 changeTheoreticalPartText={changeTheoreticalPartText}
@@ -69,7 +61,6 @@ const Constructor = ({
                             <PreviewScreen
                                 questionId={question.id}
                                 question={question}
-                                testConstructor={testConstructor}
                                 key={question.id + 100}
                             />
                         </div>
@@ -77,7 +68,6 @@ const Constructor = ({
                     })}
                     <ConstructorButton
                         text={'Добавить вопрос'}
-                        addQuestion={addQuestion}
                     />
                 </form>
             </div>

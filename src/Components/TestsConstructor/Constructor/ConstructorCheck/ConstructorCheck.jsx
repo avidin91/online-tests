@@ -2,15 +2,21 @@ import React from 'react';
 import classes from "./ConstructorCheck.module.css";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleQuestion} from "@fortawesome/free-regular-svg-icons";
+import {useDispatch} from "react-redux";
+import {isChecked} from "../../../../store/testConstructorStore/testConstructorSlice";
 
 const ConstructorCheck = (props) => {
+    const dispatch = useDispatch();
+
 
     // Функция checkPropsForFunctions проверяет из какого чекбокса пришли пропсы, и запускает соотвествующую функцию
     const checkPropsForFunctions = function (e, questionId) {
+        const checked = e.target.checked;
+
         if (props.id === 'theoretical') {
             return props.checkTheoretical(e, questionId)
         } if (props.id === 'multipleAnswers') {
-            return props.isChecked(e, questionId)
+            return dispatch(isChecked({checked, questionId}))
         } if (props.id === 'timer') {
             return props.setTimer(e)
         }

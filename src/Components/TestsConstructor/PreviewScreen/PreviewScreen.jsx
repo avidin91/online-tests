@@ -1,19 +1,21 @@
 import React from 'react';
 import classes from "./PreviewScreen.module.css";
+import {useSelector} from "react-redux";
 import PreviewScreenAnswer from "./PreviewScreenAnswer/PreviewScreenAnswer";
 
 // Компонента PreviewScreen отображает предварительный просмотр заполненого теста
-const PreviewScreen = ({testConstructor, questionId, question}) => {
+const PreviewScreen = ({questionId, question}) => {
+    const testConstructorState = useSelector(store => store.testConstructorStore)
 
     // console.log('PreviewScreen перерисовался')
     const answers = question.answers;
 
     // Функция checkFirstTitle убирает кавычки и слово "Например" из заголовка.
     const checkFirstTitle = function () {
-        if (testConstructor.testTitlePlaceholder === 'Например: «Окружности в математике и геометрии "7 класс"»') {
+        if (testConstructorState.testTitlePlaceholder === 'Например: «Окружности в математике и геометрии "7 класс"»') {
             return 'Окружности в математике и геометрии «7 класс»'
         } else {
-            return testConstructor.testTitlePlaceholder
+            return testConstructorState.testTitlePlaceholder
         }
     }
     const firstTitle = checkFirstTitle()
@@ -32,13 +34,13 @@ const PreviewScreen = ({testConstructor, questionId, question}) => {
         <div className={classes.previewScreen}>
             <div className={classes.title}>
                 <p>
-                    {testConstructor.testTitleText ? testConstructor.testTitleText : firstTitle}
+                    {testConstructorState.testTitleText ? testConstructorState.testTitleText : firstTitle}
                 </p>
             </div>
             <div className={classes.questionBlock}>
                 <div>
                     <p>
-                        Вопрос <span>{questionId}</span> из <span>{testConstructor.questions.length}</span>
+                        Вопрос <span>{questionId}</span> из <span>{testConstructorState.questions.length}</span>
                     </p>
                 </div>
                 <div>
